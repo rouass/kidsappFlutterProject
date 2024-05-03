@@ -16,14 +16,14 @@ class LearnAlphabet extends StatelessWidget {
               height: double.infinity,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("images/bgRose.png"),
+                  image: AssetImage("images/bgRose2.png"),
                   fit: BoxFit.cover,
                 ),
               ),
             ),
             // Title
             Positioned(
-              top: 30, // Adjust the top position as needed
+              top: 90, // Adjust the top position as needed
               left: 0,
               right: 0,
               child: Center(
@@ -40,7 +40,7 @@ class LearnAlphabet extends StatelessWidget {
             // Content
             Positioned.fill(
               child: Padding(
-                padding: const EdgeInsets.only(top: 150.0), // Adjust top padding to leave space for the title and additional margin
+                padding: const EdgeInsets.only(top: 350.0), // Adjust top padding to leave space for the title and additional margin
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start, // Align content at the top
                   crossAxisAlignment: CrossAxisAlignment.center,
