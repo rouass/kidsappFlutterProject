@@ -4,11 +4,14 @@ class NavigationCard extends StatelessWidget {
   final String name;
   final String image;
   final String route;
+  final Color color;
+
 
   const NavigationCard({
     required this.name,
     required this.image,
     required this.route,
+    required this.color ,
   });
 
   @override
@@ -21,7 +24,9 @@ class NavigationCard extends StatelessWidget {
         elevation: 5,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
+
         ),
+        color: color ,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
