@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kidsapp/widgets/NavigationCard.dart';
 
+import 'constants/color.dart';
+
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -19,13 +21,12 @@ class HomeScreen extends StatelessWidget {
               name: 'Learn Math',
               image: 'assets/calculator.png',
               route: '/mathScreen',
-              color: Colors.white,
-            ),
+              color: kMathPrimaryColor            ),
             NavigationCard(
               name: 'Learn ABC',
               image: 'assets/abc.png',
-              route: '/alphabetsList',
-              color: Colors.blue,
+              route: '/alphabetScreen',
+              color: kAlphabetsPrimaryColor,
             ),
             // Add more NavigationCard widgets as needed
           ],
