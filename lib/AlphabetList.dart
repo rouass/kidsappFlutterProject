@@ -1,20 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: AlphabetList(),
-    );
-  }
-}
-
 class AlphabetList extends StatelessWidget {
+  static final  String routeName = '/alphabetsList';
+
   List<String> alphabetImg = [
     'A',
     'B',
@@ -44,8 +33,8 @@ class AlphabetList extends StatelessWidget {
   ];
   final audioPlayer = AudioPlayer();
   void playAudio(String alphabet) async {
-   await audioPlayer.play(UrlSource('sounds/A.mp3'));
-}
+    await audioPlayer.play(UrlSource('sounds/A.mp3'));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,8 +58,8 @@ class AlphabetList extends StatelessWidget {
               },
               child: Container(
                 padding: EdgeInsets.all(8),
-                width: MediaQuery.of(context).size.width * 0.25, 
-                height: 100, 
+                width: MediaQuery.of(context).size.width * 0.25,
+                height: 100,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: Color(0xFFF5F3FF),
@@ -95,7 +84,4 @@ class AlphabetList extends StatelessWidget {
       ),
     );
   }
-
-
-
 }

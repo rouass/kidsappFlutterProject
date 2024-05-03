@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:kidsapp/AlphabetList.dart';
 import 'package:kidsapp/WelcomeScreen.dart';
-import 'package:kidsapp/learnAlphabet.dart';
+import 'package:kidsapp/LearnAlphabet.dart';
 import 'package:kidsapp/ui/Math/mathCalculationScreen.dart';
 import 'package:kidsapp/ui/Math/mathScreen_page.dart';
+
+
+import 'HomeScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,10 +23,12 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:MathScreenPage(),
+      home:HomeScreen(),
       routes: {
         MathScreenPage.routeName: (context) => MathScreenPage(),
         MathCalculationScreen.routeName: (context) => MathCalculationScreen(),
+        AlphabetList.routeName :(context)=>AlphabetList(),
+        LearnAlphabet.routeName:(context) =>LearnAlphabet(),
       },
 
     );

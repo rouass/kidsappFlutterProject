@@ -6,7 +6,7 @@ import '../../widgets/NumberGenerator.dart';
 import 'MathOperationArguments.dart';
 
 class MathCalculationScreen extends StatelessWidget {
-  static const String routeName = '/mathCalculation';
+  static final String routeName = '/mathCalculation';
 
   @override
   Widget build(BuildContext context) {

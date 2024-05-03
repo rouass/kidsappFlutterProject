@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:kidsapp/AlphabetList.dart';
-import 'package:kidsapp/main.dart';
-
-
 
 class LearnAlphabet extends StatelessWidget {
+  static final String routeName = "/alphabetScreen";
+
+  const LearnAlphabet({super.key}); // Define routeName here
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -39,7 +40,8 @@ class LearnAlphabet extends StatelessWidget {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => AlphabetList()),
+                          MaterialPageRoute(
+                              builder: (context) => AlphabetList()),
                         );
                       },
                       child: Container(
