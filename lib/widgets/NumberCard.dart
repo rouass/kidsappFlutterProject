@@ -23,7 +23,7 @@ class NumberCard extends StatelessWidget {
           alignment: Alignment.center,
           child: Text(
             number.toString(),
-            style: TextStyle(fontSize: 24),
+            style: TextStyle(fontSize: 50,fontWeight: FontWeight.w700),
           ),
         ),
       ),

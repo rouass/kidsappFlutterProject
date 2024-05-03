@@ -34,7 +34,7 @@ class CustomButton extends StatelessWidget {
           fontSize: 15,
           fontWeight: FontWeight.bold,
           letterSpacing: 0.8,
-          fontFamily: 'Din Round', // You may need to adjust the font family
+          fontFamily: 'Seymour One', // You may need to adjust the font family
         ),
       ),
     );
