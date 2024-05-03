@@ -40,7 +40,7 @@ class LearnAlphabet extends StatelessWidget {
             // Content
             Positioned.fill(
               child: Padding(
-                padding: const EdgeInsets.only(top: 350.0), // Adjust top padding to leave space for the title and additional margin
+                padding: const EdgeInsets.only(top: 360.0), // Adjust top padding to leave space for the title and additional margin
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start, // Align content at the top
                   crossAxisAlignment: CrossAxisAlignment.center,
