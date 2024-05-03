@@ -3,6 +3,7 @@ import 'package:kidsapp/AlphabetList.dart';
 import 'package:kidsapp/WelcomeScreen.dart';
 import 'package:kidsapp/learnAlphabet.dart';
 import 'package:kidsapp/ui/Math/mathCalculationScreen.dart';
+import 'package:kidsapp/ui/Math/mathScreen_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +20,12 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: WelcomeScreen(),
+      home:MathScreenPage(),
+      routes: {
+        MathScreenPage.routeName: (context) => MathScreenPage(),
+        MathCalculationScreen.routeName: (context) => MathCalculationScreen(),
+      },
+
     );
   }
 }

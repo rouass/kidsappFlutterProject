@@ -30,25 +30,6 @@ class MathCalculationScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            GestureDetector(
-              child: Container(
-                decoration: BoxDecoration(
-                  color: kMathPrimaryColor, // Set button color using the provided constant
-                  borderRadius: BorderRadius.circular(8), // Add border radius for rounded corners
-                ),
-                padding: EdgeInsets.all(8), // Adjust padding as needed
-                child: SizedBox(
-                  width: 20,
-                  height: 20,
-                  child: Image.asset(
-                    'assets/exchange.png', // Background image for the button
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-            ),
-
-
             SizedBox(
           height: 200, // Set the height of the calculation box
           child: Card(
@@ -87,9 +68,11 @@ class MathCalculationScreen extends StatelessWidget {
           ),
         ),
             SizedBox(height: 20),
-            Text(
-              'Choose the Right Answer',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            Center(
+              child: Text(
+                'Choose the Right Answer',
+                style: TextStyle(color: Colors.white, fontSize: 40, fontWeight: FontWeight.w800),
+              ),
             ),
             SizedBox(height: 20),
             Expanded(
@@ -110,10 +93,12 @@ class MathCalculationScreen extends StatelessWidget {
               ),
             ),
             CustomButton(
-              text: 'Next', // Text for the button
+              text: 'Next',
+              // Text for the button
               onPressed: () {
                 // Handle button press (e.g., navigate to the next screen)
               },
+
             ),
           ],
         ),
