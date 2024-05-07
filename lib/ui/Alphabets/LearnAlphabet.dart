@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kidsapp/AlphabetList.dart';
+import 'package:kidsapp/ui/Alphabets/AlphabetList.dart';
 import 'package:kidsapp/main.dart';
 
 class LearnAlphabet extends StatelessWidget {

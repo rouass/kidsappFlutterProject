@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 
 class LookAndChoose extends StatefulWidget {
+  static final String routeName = '/chooseWords';
+
   const LookAndChoose({Key? key}) : super(key: key);
 
   @override

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kidsapp/LearnAlphabet.dart';
+import 'package:kidsapp/ui/Alphabets/LearnAlphabet.dart';
 import 'package:kidsapp/main.dart';
 
 void main() {

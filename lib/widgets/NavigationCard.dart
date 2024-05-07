@@ -26,9 +26,8 @@ class NavigationCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
         ),
         color: color, // Use the provided color
-        child: Row(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-
           children: [
             Text(
               name,
