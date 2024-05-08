@@ -6,7 +6,6 @@ class NavigationCard extends StatelessWidget {
   final String route;
   final Color color;
 
-
   const NavigationCard({
     required this.name,
     required this.image,
@@ -20,6 +19,7 @@ class NavigationCard extends StatelessWidget {
       onTap: () {
         Navigator.pushNamed(context, route);
       },
+
       child: Card(
         elevation: 5,
         shape: RoundedRectangleBorder(
@@ -28,17 +28,16 @@ class NavigationCard extends StatelessWidget {
         ),
         color: color ,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Image.asset(
-              image,
-              height: 80, // Set the height of the image
-              width: 80, // Set the width of the image
-            ),
-            SizedBox(height: 10),
             Text(
               name,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            Image.asset(
+              image,
+              height: 80,
+              width: 80,
             ),
           ],
         ),
