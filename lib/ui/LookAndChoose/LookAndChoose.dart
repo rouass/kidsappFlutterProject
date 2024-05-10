@@ -120,9 +120,9 @@ void validateWord() {
     switch (widget.level) {
       case 1:
         images = [
-          'images/apple.png',
-          'banana.png',
-          'orange.png',
+          'assets/apple.png',
+          'assets/banana.png',
+          'assets/orange.png',
           // Ajouter d'autres images de fruits si nécessaire
         ];
         words = [
@@ -134,9 +134,9 @@ void validateWord() {
         break;
       case 2:
         images = [
-          'Frt/dog.png',
-          'Frt/cat.png',
-          'Frt/rabbit.png',
+          'assets/dog.png',
+          'assets/cat.png',
+          'assets/rabbit.png',
           // Ajouter d'autres images d'animaux si nécessaire
         ];
         words = [
@@ -148,9 +148,9 @@ void validateWord() {
         break;
       case 3:
         images = [
-          'Vgt/carrot.png',
-          'Vgt/tomato.png',
-          'Vgt/broccoli.png',
+          'assets/carrot.png',
+          'assets/tomato.png',
+          'assets/broccoli.png',
           // Ajouter d'autres images de légumes si nécessaire
         ];
         words = [
@@ -246,7 +246,7 @@ void validateWord() {
                             color: Colors
                                 .transparent, // Couleur de fond transparente
                             image: DecorationImage(
-                              image: AssetImage("ButtonV.png"),
+                              image: AssetImage("assets/ButtonV.png"),
                               fit: BoxFit.cover,
                             ),
                             borderRadius: BorderRadius.circular(20.0),

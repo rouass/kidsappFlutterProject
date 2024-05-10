@@ -93,20 +93,7 @@ class _MathScreenPageState extends State<MathScreenPage> {
                     },
                     child: CustomCard(image: AssetImage('assets/percent.png'), label: 'Division'),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      // Handle tap for 'Geometry' card
-                      print('Geometry');
-                    },
-                    child: CustomCard(image: AssetImage('assets/drawing-tools.png'), label: 'Geometry'),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      // Handle tap for 'Time' card
-                      print('Time');
-                    },
-                    child: CustomCard(image: AssetImage('assets/clock.png'), label: 'Time'),
-                  ),
+
                   // Add more CustomCard widgets as needed
                 ],
               ),

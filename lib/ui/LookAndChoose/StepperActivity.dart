@@ -13,7 +13,7 @@ class StepperAct extends StatelessWidget {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("bgSA.png"),
+            image: AssetImage("assets/bgSA.png"),
             fit: BoxFit.cover,
           ),
         ),

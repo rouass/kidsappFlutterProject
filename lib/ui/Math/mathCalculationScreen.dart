@@ -1,11 +1,13 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:kidsapp/ui/Math/ScoreScreen.dart';
 import '../../widgets/CustomButton.dart';
 import '../../widgets/NumberCard.dart';
 import '../../widgets/NumberGenerator.dart';
 import '../../widgets/WiningCard.dart';
 import 'MathOperationArguments.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+
 
 class MathCalculationScreen extends StatefulWidget {
   static final String routeName = '/mathCalculation';
@@ -19,6 +21,9 @@ class _MathCalculationScreenState extends State<MathCalculationScreen> {
   int? _randomNumber2;
   String? _symbol;
   int? result=0;
+  int attempts = 0;
+  int score = 0;
+
 
   @override
   void didChangeDependencies() {
@@ -26,42 +31,53 @@ class _MathCalculationScreenState extends State<MathCalculationScreen> {
     _generateRandomNumbers();
   }
   void checkAnswer(int selectedNumber) {
-    if (selectedNumber == result) {
-      // Display winning card if the selected number is correct
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            content: WiningCard(
-              imagePath: 'assets/HappyOwl.png',
-              message: 'You Won!',
-              isAnswerPresent: true, // or false based on your logic
-              onNextPressed: () {
-                Navigator.pop(context); // Close the dialog
-              },
-            ),
-          );
-        },
-      );
+    if (attempts < 3) {
+      attempts++;
+      if (selectedNumber == result) {
+        score += 10;
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              content: WiningCard(
+                imagePath: 'assets/HappyOwl.png',
+                message: 'You Won!',
+                isAnswerPresent: true,
+                onNextPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            );
+          },
+        );
+      } else {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              content: WiningCard(
+                imagePath: 'assets/cryingOwl.png',
+                message: 'Try Again!',
+                isAnswerPresent: false,
+                onNextPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            );
+          },
+        );
+      }
     } else {
-      // Display losing card if the selected number is incorrect
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            content: WiningCard(
-              imagePath: 'assets/cryingOwl.png',
-              message: 'Try Again!',
-              isAnswerPresent: false, // or true based on your logic
-              onNextPressed: () {
-                Navigator.pop(context); // Close the dialog
-              },
-            ),
-          );
-        },
+      // Redirect to the score screen
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ScoreScreen(score: score),
+        ),
       );
     }
   }
+
 
   void _generateRandomNumbers() {
     final args = ModalRoute.of(context)!.settings.arguments as MathOperationArguments;
