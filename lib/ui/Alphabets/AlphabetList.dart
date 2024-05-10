@@ -47,7 +47,7 @@ class AlphabetList extends StatelessWidget {
         child: GridView.builder(
           itemCount: alphabetImg.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3, // Display 3 items in each row
+            crossAxisCount: 3, 
             crossAxisSpacing: 8,
             mainAxisSpacing: 8,
           ),
