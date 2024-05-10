@@ -10,10 +10,8 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Home'),
       ),
-      body: GridView.count(
-        crossAxisCount: 2,
-        crossAxisSpacing: 16.0,
-        mainAxisSpacing: 16.0,
+      body: ListView(
+        padding: EdgeInsets.all(10),
         children: [
           NavigationCard(
             name: 'Learn Math',
@@ -21,12 +19,14 @@ class HomeScreen extends StatelessWidget {
             route: '/mathScreen',
             color: kMathPrimaryColor,
           ),
+          SizedBox(height: 10), // Added spacing between cards
           NavigationCard(
             name: 'Learn ABC',
             image: 'assets/abc.png',
             route: '/alphabetScreen',
             color: kAlphabetsPrimaryColor,
           ),
+          SizedBox(height: 10), // Added spacing between cards
           NavigationCard(
             name: 'Word Quiz',
             image: 'assets/abc.png',

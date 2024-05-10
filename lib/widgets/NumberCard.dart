@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 
 class NumberCard extends StatelessWidget {
   final int number;
+  final Function(int) onTap;
 
-  NumberCard({required this.number});
+
+  NumberCard({required this.number,required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,7 @@ class NumberCard extends StatelessWidget {
       ),
       child: InkWell(
         onTap: () {
-          // Handle number selection (e.g., check if the answer is correct)
+          onTap(number);
         },
         child: Container(
           width: 100,

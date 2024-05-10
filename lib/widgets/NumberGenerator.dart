@@ -1,21 +1,12 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 
-class NumberGenerator extends StatefulWidget {
-  const NumberGenerator({super.key});
+class NumberGenerator extends StatelessWidget {
+  final int number;
 
-  @override
-  _NumberGeneratorState createState() => _NumberGeneratorState();
-}
-
-class _NumberGeneratorState extends State<NumberGenerator> {
-  int _randomNumber = 0;
-
-  void _generateRandomNumber() {
-    setState(() {
-      _randomNumber = Random().nextInt(10); // Generates a random number between 0 and 9
-    });
-  }
+  const NumberGenerator({
+    Key? key,
+    required this.number,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +14,11 @@ class _NumberGeneratorState extends State<NumberGenerator> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Image.asset(
-          'assets/number_$_randomNumber.png', // Path to the randomly generated image
+          'assets/number_$number.png', // Path to the first number image
           height: 100,
           width: 100,
         ),
+
       ],
     );
   }

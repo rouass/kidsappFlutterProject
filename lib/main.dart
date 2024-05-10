@@ -33,6 +33,8 @@ class MyApp extends StatelessWidget {
         LearnAlphabet.routeName:(context) =>LearnAlphabet(),
         LookAndChoose.routeName: (context)=>StepperAct(),
       },
+      debugShowCheckedModeBanner: false,
+
 
     );
   }
