@@ -15,11 +15,11 @@ class NavigationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(context, route);
       },
-
       child: Card(
         elevation: 5,
         shape: RoundedRectangleBorder(

@@ -12,29 +12,38 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        foregroundColor: Colors.white,
-        backgroundColor: Color(0xFFCF25), // Text color
-        padding: EdgeInsets.symmetric(vertical: 13, horizontal: 16),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-          side: BorderSide(
-            color: Color(0xFFDF6D), // Border color
-            width: 10, // Border width
+    return SizedBox(
+      height: 50,
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.transparent, // Make button transparent
+          padding: EdgeInsets.zero, // Remove default padding
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.0),
           ),
+          elevation: 0, // No elevation
+          shadowColor: Colors.transparent, // No shadow
         ),
-        elevation: 5, // Add elevation for shadow
-        shadowColor: Color(0xFFD84C), // Shadow color
-      ),
-      child: Text(
-        text.toUpperCase(),
-        style: TextStyle(
-          fontSize: 15,
-          fontWeight: FontWeight.bold,
-          letterSpacing: 0.8,
-          fontFamily: 'Seymour One', // You may need to adjust the font family
+        child: Ink(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/btn.png"),
+              fit: BoxFit.cover,
+            ),
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          child: Container(
+            alignment: Alignment.center,
+            child: Text(
+              text,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
         ),
       ),
     );

@@ -1,12 +1,31 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:kidsapp/ui/Alphabets/LearnAlphabet.dart';
 import 'package:kidsapp/main.dart';
+
+import 'HomeScreen.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-class WelcomeScreen extends StatelessWidget {
+class WelcomeScreen extends StatefulWidget {
+  @override
+  _WelcomeScreenState createState() => _WelcomeScreenState();
+}
+
+class _WelcomeScreenState extends State<WelcomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Timer(Duration(seconds: 5), () {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => HomeScreen()),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -70,7 +89,7 @@ class WelcomeScreen extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * 0.15,
                   color: Colors.white,
                   child: SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.3, 
+                    width: MediaQuery.of(context).size.width * 0.3,
                     child: Image.asset(
                       "images/owl-rougissant.png",
                     ),
@@ -84,3 +103,4 @@ class WelcomeScreen extends StatelessWidget {
     );
   }
 }
+
