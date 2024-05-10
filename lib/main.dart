@@ -1,4 +1,6 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:kidsapp/HomeScreen.dart';
 import 'package:kidsapp/ui/Alphabets/AlphabetList.dart';
 import 'package:kidsapp/WelcomeScreen.dart';
 import 'package:kidsapp/ui/Alphabets/LearnAlphabet.dart';
@@ -6,9 +8,6 @@ import 'package:kidsapp/ui/LookAndChoose/LookAndChoose.dart';
 import 'package:kidsapp/ui/LookAndChoose/StepperActivity.dart';
 import 'package:kidsapp/ui/Math/mathCalculationScreen.dart';
 import 'package:kidsapp/ui/Math/mathScreen_page.dart';
-
-
-import 'HomeScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,20 +24,16 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:HomeScreen(),
+      home: WelcomeScreen(), // Set SplashScreen as the initial route
       routes: {
+        '/home': (context) => HomeScreen(), // Home screen route
         MathScreenPage.routeName: (context) => MathScreenPage(),
         MathCalculationScreen.routeName: (context) => MathCalculationScreen(),
-        AlphabetList.routeName :(context)=>AlphabetList(),
-        LearnAlphabet.routeName:(context) =>LearnAlphabet(),
-        LookAndChoose.routeName: (context)=>StepperAct(),
+        AlphabetList.routeName: (context) => AlphabetList(),
+        LearnAlphabet.routeName: (context) => LearnAlphabet(),
+        LookAndChoose.routeName: (context) => StepperAct(),
       },
       debugShowCheckedModeBanner: false,
-
-
     );
   }
 }
-
-
-

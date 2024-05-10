@@ -129,7 +129,6 @@ void validateWord() {
           'Apple',
           'Banana',
           'Orange',
-          // Ajouter les mots correspondants aux fruits
         ];
         break;
       case 2:
@@ -137,13 +136,11 @@ void validateWord() {
           'assets/dog.png',
           'assets/cat.png',
           'assets/rabbit.png',
-          // Ajouter d'autres images d'animaux si nécessaire
         ];
         words = [
           'Dog',
           'Cat',
           'Rabbit',
-          // Ajouter les mots correspondants aux animaux
         ];
         break;
       case 3:
@@ -175,7 +172,7 @@ void validateWord() {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("bgRRR.png"),
+            image: AssetImage("assets/bgRRR.png"),
             fit: BoxFit.cover,
           ),
         ),

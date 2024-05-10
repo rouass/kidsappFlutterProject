@@ -16,9 +16,6 @@ class _MathScreenPageState extends State<MathScreenPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('MathScreen'),
-      ),
       body: Stack(
         children: [
           // Background vector image

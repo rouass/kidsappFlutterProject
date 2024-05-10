@@ -176,9 +176,7 @@ class _MathCalculationScreenState extends State<MathCalculationScreen> {
     int resultIndex = Random().nextInt(numbers.length + 1);
     numbers.insert(resultIndex, result ?? 0);
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Math Calculation'),
-      ),
+
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
