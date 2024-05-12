@@ -120,34 +120,37 @@ void validateWord() {
     switch (widget.level) {
       case 1:
         images = [
-          'assets/apple.png',
-          'assets/banana.png',
-          'assets/orange.png',
+          'images/apple.png',
+          'banana.png',
+          'orange.png',
           // Ajouter d'autres images de fruits si nécessaire
         ];
         words = [
           'Apple',
           'Banana',
           'Orange',
+          // Ajouter les mots correspondants aux fruits
         ];
         break;
       case 2:
         images = [
-          'assets/dog.png',
-          'assets/cat.png',
-          'assets/rabbit.png',
+          'Frt/dog.png',
+          'Frt/cat.png',
+          'Frt/rabbit.png',
+          // Ajouter d'autres images d'animaux si nécessaire
         ];
         words = [
           'Dog',
           'Cat',
           'Rabbit',
+          // Ajouter les mots correspondants aux animaux
         ];
         break;
       case 3:
         images = [
-          'assets/carrot.png',
-          'assets/tomato.png',
-          'assets/broccoli.png',
+          'Vgt/carrot.png',
+          'Vgt/tomato.png',
+          'Vgt/broccoli.png',
           // Ajouter d'autres images de légumes si nécessaire
         ];
         words = [
@@ -172,7 +175,7 @@ void validateWord() {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/bgRRR.png"),
+            image: AssetImage("bgRRR.png"),
             fit: BoxFit.cover,
           ),
         ),
@@ -243,7 +246,7 @@ void validateWord() {
                             color: Colors
                                 .transparent, // Couleur de fond transparente
                             image: DecorationImage(
-                              image: AssetImage("assets/ButtonV.png"),
+                              image: AssetImage("ButtonV.png"),
                               fit: BoxFit.cover,
                             ),
                             borderRadius: BorderRadius.circular(20.0),

@@ -8,14 +8,12 @@ class ListenAndGuess extends StatefulWidget {
 }
 
 class _ListenAndGuessState extends State<ListenAndGuess> {
-  final List<String> characters =   ['APPLE', 'BALL', 'CAT', 'DOG',
-    /*'ELEPHANT', 'FISH', 'GOAT', 'HEN', 'ICE', 'JAM', 'KEY', 'LAMP', 'MOUSE',
-    'NEST', 'ORANGE', 'PENGUIN', 'QUILL', 'RABBIT', 'SNAKE', 'TORTOISE', 'UMBRELLA','VEN'*/];
+  final List<String> characters = ['APPLE', 'BALL', 'CAT', 'DOG'];
   final AudioPlayer audioPlayer = AudioPlayer();
   String soundFileName = '';
   List<String> randomLetters = [];
   Map<String, int> letterIndices = {};
-  List<String> clickedLetters = []; 
+  List<String> clickedLetters = [];
 
   Future<void> playRandomSound() async {
     final Random random = Random();
@@ -28,10 +26,10 @@ class _ListenAndGuessState extends State<ListenAndGuess> {
       soundFileName = newSoundFileName;
       print('Sound file name: $soundFileName');
       randomLetters = generateRandomLetters();
-      letterIndices.clear(); 
-      clickedLetters.clear(); 
+      letterIndices.clear();
+      clickedLetters.clear();
       for (int i = 0; i < soundFileName.length; i++) {
-        letterIndices[randomLetters[i]] = i; 
+        letterIndices[randomLetters[i]] = i;
       }
     });
   }
@@ -43,73 +41,70 @@ class _ListenAndGuessState extends State<ListenAndGuess> {
     return letters;
   }
 
-void handleLetterClick(String letter) {
-  if (letterIndices.containsKey(letter)) {
-    setState(() {
-      clickedLetters.add(letter);
-    });
-    print('Clicked letter: $letter');
-    verifyClickedLetters(); 
-  } else {
-    print('Invalid letter clicked: $letter');
-  }
-}
-
-void verifyClickedLetters() {
-  if (clickedLetters.length == soundFileName.length) {
-    bool isCorrectOrder = true;
-    for (int i = 0; i < soundFileName.length; i++) {
-      if (clickedLetters[i] != soundFileName[i]) {
-        isCorrectOrder = false;
-        break;
-      }
-    }
-    if (isCorrectOrder) {
-      print('Clicked letters are in the correct order!');
-      showSuccessDialog();
+  void handleLetterClick(String letter) {
+    if (letterIndices.containsKey(letter)) {
+      setState(() {
+        clickedLetters.add(letter);
+      });
+      print('Clicked letter: $letter');
+      verifyClickedLetters();
     } else {
-      print('Clicked letters are not in the correct order!');
-      String correctOrder = '';
+      print('Invalid letter clicked: $letter');
+    }
+  }
+
+  void verifyClickedLetters() {
+    if (clickedLetters.length == soundFileName.length) {
+      bool isCorrectOrder = true;
       for (int i = 0; i < soundFileName.length; i++) {
-        if (clickedLetters.length > i && clickedLetters[i] == soundFileName[i]) {
-          correctOrder += soundFileName[i];
-        } else {
-          correctOrder += '-';
+        if (clickedLetters[i] != soundFileName[i]) {
+          isCorrectOrder = false;
+          break;
         }
       }
-      showDialog(
-        context: context,
-        barrierDismissible: false, 
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Try Again!'),
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text('The letters you clicked are not in the correct order. Here is the correct order:'),
-                Text(correctOrder),
-              ],
-            ),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop(); 
-                  setState(() {
-                    clickedLetters.clear(); 
-                  });
-                },
-                child: Text('OK'),
+      if (isCorrectOrder) {
+        print('Clicked letters are in the correct order!');
+        showSuccessDialog();
+      } else {
+        print('Clicked letters are not in the correct order!');
+        String correctOrder = '';
+        for (int i = 0; i < soundFileName.length; i++) {
+          if (clickedLetters.length > i && clickedLetters[i] == soundFileName[i]) {
+            correctOrder += soundFileName[i];
+          } else {
+            correctOrder += '-';
+          }
+        }
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Try Again!'),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text('The letters you clicked are not in the correct order. Here is the correct order:'),
+                  Text(correctOrder),
+                ],
               ),
-            ],
-          );
-        },
-      );
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    setState(() {
+                      clickedLetters.clear();
+                    });
+                  },
+                  child: Text('OK'),
+                ),
+              ],
+            );
+          },
+        );
+      }
     }
   }
-}
-
-
-
 
   void showSuccessDialog() {
     showDialog(
@@ -120,7 +115,7 @@ void verifyClickedLetters() {
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Image.asset('images/$soundFileName.png'), 
+              Image.asset('images/$soundFileName.png'),
               SizedBox(height: 10),
               Text('Great job! You guessed it right!'),
             ],
@@ -129,7 +124,7 @@ void verifyClickedLetters() {
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
-                playRandomSound(); 
+                playRandomSound();
               },
               child: Text('Next'),
             ),
@@ -142,93 +137,94 @@ void verifyClickedLetters() {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-  home: Scaffold(
-    body: Stack(
-      children: [
-        Container(
-          width: double.infinity,
-          height: double.infinity,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("images/bgRose.png"),
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-        Positioned(
-          top: 90,
-          left: 0,
-          right: 0,
-          child: Center(
-            child: Text(
-              'Choose the right Alternative',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+      home: Scaffold(
+        body: Stack(
+          children: [
+            Container(
+              width: double.infinity,
+              height: double.infinity,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("images/bgRose.png"),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-          ),
-        ),
-        Positioned.fill(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 150.0),
-            child: Column(
-              children: [
-                SizedBox(height: 10),
-                GestureDetector(
-                  onTap: () {
-                    playRandomSound();
-                  },
-                  child: Image.asset(
-                    "images/sound.png",
-                    width: 120,
-                    height: 120,
+            Positioned(
+              top: 90,
+              left: 0,
+              right: 0,
+              child: Center(
+                child: Text(
+                  'Choose the Right Alternative',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
                   ),
                 ),
-                if (soundFileName.isNotEmpty)
-                  Expanded(
-                    child: GridView.count(
-                      shrinkWrap: true,
-                      crossAxisCount: soundFileName.length,
-                      mainAxisSpacing: 20, // Adjust main axis spacing as needed
-                      crossAxisSpacing: 20, // Adjust cross axis spacing as needed
-                      children: List.generate(
-                        randomLetters.length,
-                        (index) => GestureDetector(
-                          onTap: () {
-                            handleLetterClick(randomLetters[index]);
-                          },
-                          child: Container(
-                            width: 30, // Adjust width as needed
-                            height: 30, // Adjust height as needed
-                            decoration: BoxDecoration(
-                              color: const Color.fromARGB(255, 212, 190, 190),
-                              borderRadius: BorderRadius.circular(2),
-                              border: Border.all(color: Colors.blueGrey),
-                            ),
-                            alignment: Alignment.center,
-                            child: Text(
-                              randomLetters[index],
-                              style: TextStyle(
-                                fontSize: 16, // Adjust fontSize as needed
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
+              ),
+            ),
+            Positioned.fill(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 150.0),
+                child: Column(
+                  children: [
+                    SizedBox(height: 10),
+                    GestureDetector(
+                      onTap: () {
+                        playRandomSound();
+                      },
+                      child: Image.asset(
+                        "images/sound.png",
+                        width: 120,
+                        height: 120,
+                      ),
+                    ),
+                    if (soundFileName.isNotEmpty)
+                      Expanded(
+                        child: GridView.count(
+                                padding: const EdgeInsets.only(top: 100.0),
+
+                          shrinkWrap: true,
+                          crossAxisCount: soundFileName.length,
+                          mainAxisSpacing: 20,
+                          crossAxisSpacing: 20,
+                          children: List.generate(
+                            randomLetters.length,
+                            (index) => GestureDetector(
+                              onTap: () {
+                                handleLetterClick(randomLetters[index]);
+                              },
+                              child: Container(
+                                width: 30,
+                                height: 30,
+                                decoration: BoxDecoration(
+                                  color: Color.fromARGB(255, 240, 234, 234),
+                                  borderRadius: BorderRadius.circular(7),
+                                  border: Border.all(color: const Color.fromARGB(255, 223, 233, 238)),
+                                ),
+                                alignment: Alignment.center,
+                                child: Text(
+                                  randomLetters[index],
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
-              ],
+                  ],
+                ),
+              ),
             ),
-          ),
+          ],
         ),
-      ],
-    ),
-  ),
-);
-
+      ),
+    );
   }
 }

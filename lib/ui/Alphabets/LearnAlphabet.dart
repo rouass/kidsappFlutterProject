@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:kidsapp/ui/Alphabets/AlphabetList.dart';
 import 'package:kidsapp/main.dart';
+import 'package:kidsapp/ui/Alphabets/ListenAndGuess.dart';
 
 class LearnAlphabet extends StatelessWidget {
-  static final String routeName = "/alphabetScreen" ;
+  static final String routeName = "/alphabetScreen";
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -80,30 +82,38 @@ class LearnAlphabet extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Container(
-                      width: MediaQuery.of(context).size.width * 0.8,
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.7),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Column(
-                        children: [
-                          Text(
-                            'Listen and Guess',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => ListenAndGuess()),
+                        );
+                      },
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * 0.8,
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.7),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Column(
+                          children: [
+                            Text(
+                              'Listen and Guess',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
                             ),
-                          ),
-                          SizedBox(height: 10),
-                          Image.asset(
-                            "images/listenGuess.png",
-                            width: 100,
-                            height: 100,
-                          ),
-                        ],
+                            SizedBox(height: 10),
+                            Image.asset(
+                              "images/listenGuess.png",
+                              width: 100,
+                              height: 100,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],
