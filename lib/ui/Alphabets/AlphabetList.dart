@@ -30,6 +30,8 @@ class AlphabetList extends StatelessWidget {
     'Y',
     'Z',
     'W',
+     /*'ELEPHANT', 'FISH', 'GOAT', 'HEN', 'ICE', 'JAM', 'KEY', 'LAMP', 'MOUSE',
+    'NEST', 'ORANGE', 'PENGUIN', 'QUILL', 'RABBIT', 'SNAKE', 'TORTOISE', 'UMBRELLA','VEN'*/
   ];
   final audioPlayer = AudioPlayer();
   void playAudio(String alphabet) async {
