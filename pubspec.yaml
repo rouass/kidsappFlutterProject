@@ -39,9 +39,11 @@ dependencies:
   flutter_bloc: ^8.1.5
   timeline_tile: ^2.0.0
   fluttertoast: ^8.2.5
-  sqflite: ^2.0.0
+  sqflite: ^2.3.2
   intl: ^0.17.0
   sqflite_common_ffi_web: ^0.4.2+3
+  just_audio: ^0.9.37
+  shared_preferences: ^2.0.0
 
 
 dev_dependencies:
@@ -72,6 +74,7 @@ flutter:
     - images/
     - sounds/
     - images/alphabetsSounds/
+    - sounds/ListenAndGuess/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

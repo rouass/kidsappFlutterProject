@@ -2,40 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 
 class AlphabetList extends StatelessWidget {
-  static final  String routeName = '/alphabetsList';
+  static final String routeName = '/alphabetsList';
 
   List<String> alphabetImg = [
-    'A',
-    'B',
-    'C',
-    'D',
-    'E',
-    'F',
-    'H',
-    'I',
-    'J',
-    'K',
-    'L',
-    'M',
-    'N',
-    'O',
-    'P',
-    'Q',
-    'R',
-    'S',
-    'T',
-    'U',
-    'V',
-    'X',
-    'Y',
-    'Z',
-    'W',
-     /*'ELEPHANT', 'FISH', 'GOAT', 'HEN', 'ICE', 'JAM', 'KEY', 'LAMP', 'MOUSE',
-    'NEST', 'ORANGE', 'PENGUIN', 'QUILL', 'RABBIT', 'SNAKE', 'TORTOISE', 'UMBRELLA','VEN'*/
+    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
+    'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
   ];
-  final audioPlayer = AudioPlayer();
+
+  final AudioPlayer audioPlayer = AudioPlayer();
+
   void playAudio(String alphabet) async {
-    await audioPlayer.play(UrlSource('sounds/A.mp3'));
+    final String filePath = 'sounds/alphabets/$alphabet.mp3';
+    await audioPlayer.play(UrlSource(filePath));
   }
 
   @override
@@ -49,7 +27,7 @@ class AlphabetList extends StatelessWidget {
         child: GridView.builder(
           itemCount: alphabetImg.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3, 
+            crossAxisCount: 3,
             crossAxisSpacing: 8,
             mainAxisSpacing: 8,
           ),
