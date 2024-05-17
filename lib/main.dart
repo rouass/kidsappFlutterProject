@@ -9,11 +9,10 @@ import 'package:kidsapp/ui/LookAndChoose/LookAndChoose.dart';
 import 'package:kidsapp/ui/LookAndChoose/StepperActivity.dart';
 import 'package:kidsapp/ui/Math/mathCalculationScreen.dart';
 import 'package:kidsapp/ui/Math/mathScreen_page.dart';
-//import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+
 
 void main() {
-   /* sqfliteFfiInit();
-      databaseFactory = databaseFactoryFfi;*/
+  
 
 
   runApp(const MyApp());
@@ -30,6 +29,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: WelcomeScreen(), // Set SplashScreen as the initial route
+    
       routes: {
         '/home': (context) => HomeScreen(), // Home screen route
         MathScreenPage.routeName: (context) => MathScreenPage(),

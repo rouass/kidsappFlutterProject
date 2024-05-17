@@ -86,10 +86,7 @@ class LearnAlphabet extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => ListenAndGuess(     
-                          score: Score(
-                            gameName: 'AlphabetsSounds', 
-                            score: 0, 
-                          ),
+                          
                         )),
                       );
                     },

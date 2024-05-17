@@ -1,12 +1,46 @@
+final String tableScores = 'scores';
+
+class ScoreFields {
+  static final String id = '_id';
+  static final String gameName = 'gameName';
+  static final String score = '_score'; 
+  
+  static final List<String> values = [
+    id, gameName, score 
+  ];
+}
+
 class Score {
-  String gameName;
-  int _score;
+  final int id;
+  final String gameName;
+  final int score; 
 
-  Score({required this.gameName, required int score}) : _score = score;
+  const Score({
+    required this.id,
+    required this.gameName,
+    required this.score,
+  });
 
-  int get score => _score;
+  Map<String, Object?> toJson() => {
+    ScoreFields.id: id,
+    ScoreFields.gameName: gameName,
+    ScoreFields.score: score,
+  };
 
-  set score(int value) {
-    _score = value;
-  }
+  Score copy({
+    int? id,
+    String? gameName,
+    int? score,
+  }) =>
+      Score(
+        id: id ?? this.id,
+        gameName: gameName ?? this.gameName,
+        score: score ?? this.score,
+      );
+
+  static Score fromJson(Map<String, Object?> json) => Score(
+        id: json[ScoreFields.id] as int,
+        gameName: json[ScoreFields.gameName] as String,
+        score: json[ScoreFields.score] as int,
+      );
 }
