@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LookAndChoose extends StatefulWidget {
   static final String routeName = '/chooseWords';
@@ -17,6 +18,170 @@ class _LookAndChooseState extends State<LookAndChoose> {
 
   int currentImageIndex = 0;
   bool isError = false;
+  int score = 0;
+  int pointsToAdd = 1;
+  bool isLevelCompleted = false; 
+  late SharedPreferences prefs;
+  TextEditingController textEditingController = TextEditingController();
+
+
+  @override
+  void initState() {
+    super.initState();
+    initializeSharedPreferences();
+    switch (widget.level) {
+      case 1:
+        images = [
+          'images/apple.png',
+          'banana.png',
+          'images/orange.png',
+        ];
+        words = [
+          'Apple',
+          'Banana',
+          'Orange',
+        ];
+        break;
+      case 2:
+        images = [
+          'Frt/dog.png',
+          'Frt/cat.png',
+          'Frt/rabbit.png',
+        ];
+        words = [
+          'Dog',
+          'Cat',
+          'Rabbit',
+        ];
+        break;
+      case 3:
+        images = [
+          'Vgt/carrot.png',
+          'Vgt/tomato.png',
+          'Vgt/broccoli.png',
+        ];
+        words = [
+          'Carrot',
+          'Tomato',
+          'Broccoli',
+        ];
+        break;
+      default:
+        throw ArgumentError('Invalid level');
+    }
+  }
+
+  void initializeSharedPreferences() async {
+    prefs = await SharedPreferences.getInstance();
+    setState(() {
+      score = prefs.getInt('score') ?? 0;
+    });
+  }
+   
+  void saveScore() {
+    prefs.setInt('score', score);
+  }
+
+  void validateWord() {
+    String inputWord = textEditingController.text.toLowerCase();
+    String correctWord = words[currentImageIndex].toLowerCase();
+    if (inputWord == correctWord) {
+      setState(() {
+        score += pointsToAdd;
+        saveScore();
+      });
+    if (currentImageIndex == images.length - 1) {
+  // Dialogue de félicitations
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Congratulations!'),
+        content: Text('You have completed Level ${widget.level} with a score of $score. Proceed to the next level?'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              switch (widget.level) {
+                case 1:
+                  _completeLevel1();
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => LookAndChoose(level: 2)),
+                  );
+                  break;
+                case 2:
+                  _completeLevel2();
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => LookAndChoose(level: 3)),
+                  );
+                  break;
+                case 3:
+                  _completeLevel3();
+                  // Add logic for further levels if needed
+                  break;
+              }
+            },
+            child: Text('Yes'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text('No'),
+          ),
+        ],
+      );
+    },
+  );
+}
+ else {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              backgroundColor: Colors.amber.shade300,
+              title: Text('Correct!'),
+              content: Text('You got it right!'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    nextImage();
+                    textEditingController.clear();
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('Next'),
+                ),
+              ],
+            );
+          },
+        );
+      }
+    } else {
+      setState(() {
+        isError = true;
+      });
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Incorrect word'),
+            content: Text('Please try again.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  textEditingController.clear();
+                  Navigator.of(context).pop();
+                },
+                child: Text('Try Again'),
+              ),
+            ],
+          );
+        },
+      );
+    }
+  }
 
   void nextImage() {
     setState(() {
@@ -27,144 +192,29 @@ class _LookAndChooseState extends State<LookAndChoose> {
     });
   }
 
-  int previousImageIndex = -1;
-
-  TextEditingController textEditingController = TextEditingController();
-
-void validateWord() {
-  String inputWord = textEditingController.text.toLowerCase();
-  String correctWord = words[currentImageIndex].toLowerCase();
-  if (inputWord == correctWord) {
-    // Logique pour vérifier si l'utilisateur a terminé tous les mots du niveau actuel
-    if (currentImageIndex == images.length - 1) {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Congratulations!'),
-            content: Text('You have completed Level ${widget.level}. Proceed to the next level?'),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  // Passer au niveau suivant
-                  Navigator.of(context).pop();
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => LookAndChoose(level: widget.level + 1)),
-                  );
-                },
-                child: Text('Yes'),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text('No'),
-              ),
-            ],
-          );
-        },
-      );
-    } else {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            backgroundColor: Colors.amber.shade300,
-            title: Text('Correct!'),
-            content: Text('You got it right!'),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  previousImageIndex = currentImageIndex;
-                  nextImage();
-                  textEditingController.clear();
-                  Navigator.of(context).pop();
-                },
-                child: Text('Next'),
-              ),
-            ],
-          );
-        },
-      );
-    }
-  } else {
+ void _completeLevel1() {
     setState(() {
-      isError = true;
+      isLevelCompleted = true;
     });
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Incorrect word'),
-          content: Text('Please try again.'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                textEditingController.clear();
-                Navigator.of(context).pop();
-              },
-              child: Text('Try Again'),
-            ),
-          ],
-        );
-      },
-    );
   }
+
+void _completeLevel2() {
+  setState(() {
+    isLevelCompleted = true;
+  });
 }
 
-  @override
-  void initState() {
-    super.initState();
-    // Initialiser les images et les mots en fonction du niveau sélectionné
-    switch (widget.level) {
-      case 1:
-        images = [
-          'images/apple.png',
-          'banana.png',
-          'orange.png',
-          // Ajouter d'autres images de fruits si nécessaire
-        ];
-        words = [
-          'Apple',
-          'Banana',
-          'Orange',
-          // Ajouter les mots correspondants aux fruits
-        ];
-        break;
-      case 2:
-        images = [
-          'Frt/dog.png',
-          'Frt/cat.png',
-          'Frt/rabbit.png',
-          // Ajouter d'autres images d'animaux si nécessaire
-        ];
-        words = [
-          'Dog',
-          'Cat',
-          'Rabbit',
-          // Ajouter les mots correspondants aux animaux
-        ];
-        break;
-      case 3:
-        images = [
-          'Vgt/carrot.png',
-          'Vgt/tomato.png',
-          'Vgt/broccoli.png',
-          // Ajouter d'autres images de légumes si nécessaire
-        ];
-        words = [
-          'Carrot',
-          'Tomato',
-          'Broccoli',
-          // Ajouter les mots correspondants aux légumes
-        ];
-        break;
-      default:
-        // Si le niveau sélectionné n'est pas valide, afficher une erreur
-        throw ArgumentError('Invalid level');
-    }
+void _completeLevel3() {
+  setState(() {
+    isLevelCompleted = true;
+  });
+}
+
+  void saveLevelProgress(int level) async {
+    await prefs.setInt('level_completed', level);
   }
+
+  int previousImageIndex = -1;
 
   @override
   Widget build(BuildContext context) {
@@ -209,6 +259,13 @@ void validateWord() {
               ),
             ),
             SizedBox(height: 20),
+            Text(
+              'Score: $score',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             TextField(
               controller: textEditingController,
               decoration: InputDecoration(
@@ -226,25 +283,22 @@ void validateWord() {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  // Vos autres widgets ici
                   Container(
                     margin: EdgeInsets.only(top: 100),
                     child: SizedBox(
                       width: 210,
-                      height: 50, // Définissez la hauteur souhaitée ici
+                      height: 50,
                       child: ElevatedButton(
                         onPressed: validateWord,
                         style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets
-                              .zero, // Pas de remplissage à l'intérieur du bouton
+                          padding: EdgeInsets.zero,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20.0),
                           ),
                         ),
                         child: Ink(
                           decoration: BoxDecoration(
-                            color: Colors
-                                .transparent, // Couleur de fond transparente
+                            color: Colors.transparent,
                             image: DecorationImage(
                               image: AssetImage("ButtonV.png"),
                               fit: BoxFit.cover,
