@@ -37,7 +37,7 @@ class MyTimeLineTime extends StatelessWidget {
               ? const Color.fromARGB(255, 1, 171, 154)
               : const Color.fromARGB(255, 170, 205, 202),
           indicator: Image.asset(
-            'med.png',
+            'assets/med.png',
             width: 50, // Réglage de la largeur de l'image
             height: 50, // Réglage de la hauteur de l'image
           ),

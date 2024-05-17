@@ -20,26 +20,31 @@ class NavigationCard extends StatelessWidget {
       onTap: () {
         Navigator.pushNamed(context, route);
       },
-      child: Card(
-        elevation: 5,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
-
-        ),
-        color: color ,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Text(
-              name,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          height: 150, // specify the height you want
+          child: Card(
+            elevation: 5,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
             ),
-            Image.asset(
-              image,
-              height: 80,
-              width: 80,
+            color: color ,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text(
+                  name,
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                ),
+                Image.asset(
+                  image,
+                  height: 80,
+                  width: 80,
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

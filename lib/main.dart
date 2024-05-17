@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:kidsapp/HomeScreen.dart';
 import 'package:kidsapp/ui/Alphabets/AlphabetList.dart';
@@ -9,10 +10,15 @@ import 'package:kidsapp/ui/LookAndChoose/LookAndChoose.dart';
 import 'package:kidsapp/ui/LookAndChoose/StepperActivity.dart';
 import 'package:kidsapp/ui/Math/mathCalculationScreen.dart';
 import 'package:kidsapp/ui/Math/mathScreen_page.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 
 void main() {
-  
+  if (!kIsWeb) {
+    sqfliteFfiInit(); // Initialize FFI for non-web platforms
+    databaseFactory = databaseFactoryFfi;
+  }
 
 
   runApp(const MyApp());

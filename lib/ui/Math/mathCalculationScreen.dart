@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:kidsapp/ui/Math/ScoreScreen.dart';
+import '../../database/databaseService.dart';
 import '../../widgets/CustomButton.dart';
 import '../../widgets/NumberCard.dart';
 import '../../widgets/NumberGenerator.dart';
@@ -11,6 +12,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 class MathCalculationScreen extends StatefulWidget {
   static final String routeName = '/mathCalculation';
+
 
   @override
   _MathCalculationScreenState createState() => _MathCalculationScreenState();
@@ -23,18 +25,51 @@ class _MathCalculationScreenState extends State<MathCalculationScreen> {
   int? result=0;
   int attempts = 0;
   int score = 0;
+  final DatabaseService dbService = DatabaseService.instance; // Initialize the database service
 
+  Future<void> _loadGameState() async {
+    final gameState = await dbService.loadGameState();
+    if (gameState != null) {
+      setState(() {
+        attempts = gameState['attempts'];
+        score = gameState['score'];
+        _randomNumber1 = gameState['randomNumber1'];
+        _randomNumber2 = gameState['randomNumber2'];
+        _symbol = gameState['symbol'];
+        calculateResult(_randomNumber1!, _randomNumber2!, _symbol!);
+
+      });
+    } else {
+      _initializeGameScore(); // Initialize the game score if no saved state exists
+    }
+  }
+  Future<void> _initializeGameScore() async {
+    await dbService.initializeGameScore('math');
+    _generateRandomNumbers();
+  }
+  @override
+  void initState() {
+    super.initState();
+    _loadGameState(); // Load the saved game state
+  }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     _generateRandomNumbers();
   }
-  void checkAnswer(int selectedNumber) {
+  void checkAnswer(int selectedNumber) async {
     if (attempts < 3) {
       attempts++;
       if (selectedNumber == result) {
         score += 10;
+        final mathScore = await dbService.readScore(1); // Assuming the score entry has ID 1
+        if (mathScore != null) {
+          await dbService.updateScore(mathScore.id, 10); // Update the score in the database for the game with ID 1
+          print('Score updated successfully. New score: ${mathScore.score + 10}');
+        } else {
+          print('Score entry not found.');
+        }
         showDialog(
           context: context,
           builder: (BuildContext context) {
@@ -76,6 +111,9 @@ class _MathCalculationScreenState extends State<MathCalculationScreen> {
         ),
       );
     }
+
+    // Save the game state after each attempt
+    await dbService.saveGameState(attempts, score, _randomNumber1, _randomNumber2, _symbol);
   }
 
 
@@ -234,6 +272,14 @@ class _MathCalculationScreenState extends State<MathCalculationScreen> {
               ),
             ),
             SizedBox(height: 20),
+
+            Center(
+              child: Text(
+                'Score: $score', // Display the score here
+                style: TextStyle(color: Colors.white,fontSize: 40, fontWeight: FontWeight.bold),
+              ),
+            ),
+            SizedBox(height: 10),
             Center(
               child: Text(
                 'Choose the Right Answer',

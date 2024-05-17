@@ -32,9 +32,9 @@ class _LookAndChooseState extends State<LookAndChoose> {
     switch (widget.level) {
       case 1:
         images = [
-          'images/apple.png',
-          'banana.png',
-          'images/orange.png',
+          'assets/apple.png',
+          'assets/banana.png',
+          'assets/orange.png',
         ];
         words = [
           'Apple',
@@ -44,9 +44,9 @@ class _LookAndChooseState extends State<LookAndChoose> {
         break;
       case 2:
         images = [
-          'Frt/dog.png',
-          'Frt/cat.png',
-          'Frt/rabbit.png',
+          'assets/dog.png',
+          'assets/cat.png',
+          'assets/rabbit.png',
         ];
         words = [
           'Dog',
@@ -56,9 +56,9 @@ class _LookAndChooseState extends State<LookAndChoose> {
         break;
       case 3:
         images = [
-          'Vgt/carrot.png',
-          'Vgt/tomato.png',
-          'Vgt/broccoli.png',
+          'assets/carrot.png',
+          'assets/tomato.png',
+          'assets/broccoli.png',
         ];
         words = [
           'Carrot',
@@ -225,7 +225,7 @@ void _completeLevel3() {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("bgRRR.png"),
+            image: AssetImage("assets/bgRRR.png"),
             fit: BoxFit.cover,
           ),
         ),
@@ -300,7 +300,7 @@ void _completeLevel3() {
                           decoration: BoxDecoration(
                             color: Colors.transparent,
                             image: DecorationImage(
-                              image: AssetImage("ButtonV.png"),
+                              image: AssetImage("assets/ButtonV.png"),
                               fit: BoxFit.cover,
                             ),
                             borderRadius: BorderRadius.circular(20.0),
